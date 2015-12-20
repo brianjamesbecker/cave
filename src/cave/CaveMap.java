@@ -53,13 +53,11 @@ public class CaveMap {
 					//Do nothing, we don't want to add ourselves in!
 					continue;
 				}
-				// In case the index we're looking at it off the edge of the map
-				if (neighborX < 0 || neighborY < 0 || neighborX >= map.length || neighborY >= map[0].length) {
-					count = count + 1;
-				}
-				// Otherwise, a normal check of the neighbor
-				else if (map[neighborX][neighborY]) {
-					count = count + 1;
+				// In case the index we're looking at it off the edge of the map, or a filled neighbor
+				if (neighborX < 0 || neighborY < 0 ||
+					neighborX >= map.length || neighborY >= map[0].length ||
+					map[neighborX][neighborY]) {
+					count++;
 				}
 			}
 		}
@@ -68,7 +66,7 @@ public class CaveMap {
 
 	public void nextPhase() {
 		boolean[][] newMap = new boolean[WIDTH][HEIGHT];
-		//Loop over each row and column of the map
+		// Loop over each row and column of the map
 		for (int x = 0; x < map.length; x++) {
 			for (int y = 0; y < map[0].length; y++) {
 				int neibNum = neighborCount(x, y);
