@@ -1,6 +1,7 @@
 package cave;
 
 import java.lang.Math;
+import java.util.Random;
 
 public class CaveMap {
 
@@ -9,6 +10,7 @@ public class CaveMap {
 	private static final int WIDTH = 32;
 	private static final int DELETE = 3;
 	private static final int CREATE = 2;
+	private static final Random RAND = new Random(0);
 	private boolean[][] map;
 
 	public static void main(String[] args) {
@@ -22,11 +24,11 @@ public class CaveMap {
 		map = genMap();
 	}
 
-	public boolean[][] genMap() {
+	private boolean[][] genMap() {
 		boolean[][] theMap = new boolean[WIDTH][HEIGHT];
 		for (int x = 0; x < WIDTH; x++) {
 			for (int y = 0; y < HEIGHT; y++) {
-				theMap[x][y] = Math.random() < DENSITY;
+				theMap[x][y] = RAND.nextDouble() < DENSITY;
 			}
 		}
 		return theMap;
@@ -42,7 +44,7 @@ public class CaveMap {
 		}
 	}
 
-	public int neighborCount(int x, int y) {
+	int neighborCount(int x, int y) {
 		int count = 0;
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
