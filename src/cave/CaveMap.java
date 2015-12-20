@@ -1,6 +1,5 @@
 package cave;
 
-import java.lang.Math;
 import java.util.Random;
 
 public class CaveMap {
@@ -16,23 +15,39 @@ public class CaveMap {
 	private int height;
 	private boolean[][] map;
 
-	public static void main(String[] args) {
-		CaveMap cave = new CaveMap();
-		cave.printMap();
-		cave.nextPhase();
-		cave.printMap();
-	}
-
+	/** Default no argument constructor */
 	public CaveMap() {
 		this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
 
+	/** Constructor that allows you to specify the dimensions of the cave */
 	public CaveMap(int width, int height) {
 		this.width = width;
 		this.height = height;
 		map = genMap();
 	}
 
+	/** Compute the next step of the simulation */
+	public void nextPhase() {
+		boolean[][] newMap = new boolean[width][height];
+		// Loop over each row and column of the map
+		for (int x = 0; x < map.length; x++) {
+			for (int y = 0; y < map[0].length; y++) {
+				int neibNum = neighborCount(x, y);
+				//The new value is based on our simulation rules
+				//First, if a cell is alive but has too few neighbors, kill it.
+				if (map[x][y]) {
+					newMap[x][y] = neibNum >= DELETE;
+				} //Otherwise, if the cell is dead now, check if it has the right number of neighbors to be 'born'
+				else {
+					newMap[x][y] = neibNum > CREATE;
+				}
+			}
+		}
+		map = newMap;
+	}
+
+	/** generate the initial random 2D map data */
 	private boolean[][] genMap() {
 		boolean[][] theMap = new boolean[width][height];
 		for (int x = 0; x < width; x++) {
@@ -75,22 +90,10 @@ public class CaveMap {
 		return count;
 	}
 
-	public void nextPhase() {
-		boolean[][] newMap = new boolean[width][height];
-		// Loop over each row and column of the map
-		for (int x = 0; x < map.length; x++) {
-			for (int y = 0; y < map[0].length; y++) {
-				int neibNum = neighborCount(x, y);
-				//The new value is based on our simulation rules
-				//First, if a cell is alive but has too few neighbors, kill it.
-				if (map[x][y]) {
-					newMap[x][y] = neibNum >= DELETE;
-				} //Otherwise, if the cell is dead now, check if it has the right number of neighbors to be 'born'
-				else {
-					newMap[x][y] = neibNum > CREATE;
-				}
-			}
-		}
-		map = newMap;
+	public static void main(String[] args) {
+		CaveMap cave = new CaveMap();
+		cave.printMap();
+		cave.nextPhase();
+		cave.printMap();
 	}
 }
