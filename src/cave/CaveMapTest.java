@@ -13,6 +13,8 @@ public class CaveMapTest {
 		test1by4Construction();
 
 		testNeighborCount();
+
+		testNextPhase();
 	}
 
 	private void test2by2Construction() {
@@ -48,6 +50,12 @@ public class CaveMapTest {
 		verify("count for 1,0", "6", "" + cave.neighborCount(1, 0));
 		verify("count for 1,1", "5", "" + cave.neighborCount(1, 1));
 		verify("count for 4,3", "3", "" + cave.neighborCount(4, 3));
+	}
+
+	private void testNextPhase() {
+		CaveMap cave = new CaveMap(5, 5);
+		cave.nextPhase();
+		verify("5 by 5 nextPhase", "00000\n00000\n00000\n0   0\n00000\n", cave.toString());
 	}
 
 	private void verify(String name, String expected, String actual) {

@@ -2,6 +2,12 @@ package cave;
 
 import java.util.Random;
 
+/**
+ * This Cave simulation program is based on work by Michael Cook
+ * See http://gamedevelopment.tutsplus.com/tutorials/generate-random-cave-levels-using-cellular-automata--gamedev-9664
+ * @author Brian Becker
+ * @author Barry Becker
+ */
 public class CaveMap {
 
 	private static final double DENSITY = .35;
@@ -25,22 +31,24 @@ public class CaveMap {
 	public CaveMap(int width, int height) {
 		this.width = width;
 		this.height = height;
-
 		map = genMap();
 	}
 
-	/** Compute the next step of the simulation */
+	/**
+	 * Compute the next step of the simulation
+	 * The new value is at each point based on simulation rules:
+	 * - if a cell is alive but has too few neighbors, kill it.
+	 * - otherwise, if the cell is dead now, check if it has the right number of neighbors to be 'born'
+	 */
 	public void nextPhase() {
 		boolean[][] newMap = new boolean[width][height];
 		// Loop over each row and column of the map
 		for (int x = 0; x < map.length; x++) {
 			for (int y = 0; y < map[0].length; y++) {
 				int neibNum = neighborCount(x, y);
-				//The new value is based on our simulation rules
-				//First, if a cell is alive but has too few neighbors, kill it.
 				if (map[x][y]) {
 					newMap[x][y] = neibNum >= DELETE;
-				} //Otherwise, if the cell is dead now, check if it has the right number of neighbors to be 'born'
+				}
 				else {
 					newMap[x][y] = neibNum > CREATE;
 				}
