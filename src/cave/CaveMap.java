@@ -47,6 +47,22 @@ public class CaveMap {
 		map = newMap;
 	}
 
+	public void printMap() {
+		System.out.println(this.toString());
+	}
+
+	public String toString() {
+		StringBuilder bldr = new StringBuilder();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				if (map[x][y]) bldr.append("0");
+				else bldr.append(" ");
+			}
+			bldr.append("\n");
+		}
+		return bldr.toString();
+	}
+
 	/** generate the initial random 2D map data */
 	private boolean[][] genMap() {
 		boolean[][] theMap = new boolean[width][height];
@@ -56,16 +72,6 @@ public class CaveMap {
 			}
 		}
 		return theMap;
-	}
-
-	public void printMap() {
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				if (map[x][y]) System.out.print("0");
-				else System.out.print(" ");
-			}
-			System.out.println("");
-		}
 	}
 
 	int neighborCount(int x, int y) {
