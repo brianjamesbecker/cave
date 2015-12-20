@@ -6,11 +6,14 @@ import java.util.Random;
 public class CaveMap {
 
 	private static final double DENSITY = .35;
-	private static final int HEIGHT = 32;
-	private static final int WIDTH = 32;
+	private static final int DEFAULT_HEIGHT = 32;
+	private static final int DEFAULT_WIDTH = 32;
 	private static final int DELETE = 3;
 	private static final int CREATE = 2;
 	private static final Random RAND = new Random(0);
+
+	private int width;
+	private int height;
 	private boolean[][] map;
 
 	public static void main(String[] args) {
@@ -21,13 +24,19 @@ public class CaveMap {
 	}
 
 	public CaveMap() {
+		this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+	}
+
+	public CaveMap(int width, int height) {
+		this.width = width;
+		this.height = height;
 		map = genMap();
 	}
 
 	private boolean[][] genMap() {
-		boolean[][] theMap = new boolean[WIDTH][HEIGHT];
-		for (int x = 0; x < WIDTH; x++) {
-			for (int y = 0; y < HEIGHT; y++) {
+		boolean[][] theMap = new boolean[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				theMap[x][y] = RAND.nextDouble() < DENSITY;
 			}
 		}
@@ -35,8 +44,8 @@ public class CaveMap {
 	}
 
 	public void printMap() {
-		for (int x = 0; x < WIDTH; x++) {
-			for (int y = 0; y < HEIGHT; y++) {
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				if (map[x][y]) System.out.print("0");
 				else System.out.print(" ");
 			}
@@ -67,7 +76,7 @@ public class CaveMap {
 	}
 
 	public void nextPhase() {
-		boolean[][] newMap = new boolean[WIDTH][HEIGHT];
+		boolean[][] newMap = new boolean[width][height];
 		// Loop over each row and column of the map
 		for (int x = 0; x < map.length; x++) {
 			for (int y = 0; y < map[0].length; y++) {
