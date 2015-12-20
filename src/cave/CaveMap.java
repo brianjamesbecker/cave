@@ -20,11 +20,7 @@ public class CaveMap {
 	public static void genMap() {
 		for (int x = 0; x < WIDTH; x++) {
 			for (int y = 0; y < HEIGHT; y++) {
-				if (Math.random() < DENSITY) {
-					map[x][y] = true;
-				} else {
-					map[x][y] = false;
-				}
+				map[x][y] = Math.random() < DENSITY;
 			}
 		}
 	}
@@ -71,18 +67,10 @@ public class CaveMap {
 				//The new value is based on our simulation rules
 				//First, if a cell is alive but has too few neighbors, kill it.
 				if (inputMap[x][y]) {
-					if (neibNum < DELETE) {
-						newMap[x][y] = false;
-					} else {
-						newMap[x][y] = true;
-					}
+					newMap[x][y] = neibNum >= DELETE;
 				} //Otherwise, if the cell is dead now, check if it has the right number of neighbors to be 'born'
 				else {
-					if (neibNum > CREATE) {
-						newMap[x][y] = true;
-					} else {
-						newMap[x][y] = false;
-					}
+					newMap[x][y] = neibNum > CREATE;
 				}
 			}
 		}
