@@ -4,12 +4,12 @@ import java.lang.Math;
 
 public class CaveMap {
 
-	public static double DENSITY = .35;
+	public static final double DENSITY = .35;
 	public static final int HEIGHT = 32;
 	public static final int WIDTH = 32;
 	public static final int DELETE = 3;
 	public static final int CREATE = 2;
-	public static boolean[][] map = new boolean[WIDTH][HEIGHT];
+	public static final boolean[][] map = new boolean[WIDTH][HEIGHT];
 
 	public static void main(String[] args) {
 		genMap();
