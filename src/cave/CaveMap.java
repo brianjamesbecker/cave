@@ -48,15 +48,16 @@ public class CaveMap {
 			for (int j = -1; j < 2; j++) {
 				int neighborX = x + i;
 				int neighborY = y + j;
-				//If we're looking at the middle point
+				// If we're looking at the middle point
 				if (i == 0 && j == 0) {
 					//Do nothing, we don't want to add ourselves in!
+					continue;
 				}
-				//In case the index we're looking at it off the edge of the map
-				else if (neighborX < 0 || neighborY < 0 || neighborX >= map.length || neighborY >= map[0].length) {
+				// In case the index we're looking at it off the edge of the map
+				if (neighborX < 0 || neighborY < 0 || neighborX >= map.length || neighborY >= map[0].length) {
 					count = count + 1;
 				}
-				//Otherwise, a normal check of the neighbor
+				// Otherwise, a normal check of the neighbor
 				else if (map[neighborX][neighborY]) {
 					count = count + 1;
 				}
