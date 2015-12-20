@@ -35,7 +35,7 @@ public class CaveMap {
 		}
 	}
 
-	public static int neighborCount(boolean[][] inputmMp, int x, int y) {
+	public static int neighborCount(int x, int y) {
 		int count = 0;
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
@@ -63,7 +63,7 @@ public class CaveMap {
 		//Loop over each row and column of the map
 		for (int x = 0; x < inputMap.length; x++) {
 			for (int y = 0; y < inputMap[0].length; y++) {
-				int neibNum = neighborCount(inputMap, x, y);
+				int neibNum = neighborCount(x, y);
 				//The new value is based on our simulation rules
 				//First, if a cell is alive but has too few neighbors, kill it.
 				if (inputMap[x][y]) {
