@@ -12,12 +12,13 @@ public class CaveMap {
 	public static final boolean[][] map = new boolean[WIDTH][HEIGHT];
 
 	public static void main(String[] args) {
-		genMap();
-		printMap(map);
-		printMap(nextPhase(map));
+		CaveMap cave = new CaveMap();
+		cave.genMap();
+		cave.printMap(map);
+		cave.printMap(cave.nextPhase(map));
 	}
 
-	public static void genMap() {
+	public void genMap() {
 		for (int x = 0; x < WIDTH; x++) {
 			for (int y = 0; y < HEIGHT; y++) {
 				map[x][y] = Math.random() < DENSITY;
@@ -25,7 +26,7 @@ public class CaveMap {
 		}
 	}
 
-	public static void printMap(boolean[][] inputMap) {
+	public void printMap(boolean[][] inputMap) {
 		for (int x = 0; x < WIDTH; x++) {
 			for (int y = 0; y < HEIGHT; y++) {
 				if (inputMap[x][y]) System.out.print("0");
@@ -35,7 +36,7 @@ public class CaveMap {
 		}
 	}
 
-	public static int neighborCount(int x, int y) {
+	public int neighborCount(int x, int y) {
 		int count = 0;
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
@@ -58,7 +59,7 @@ public class CaveMap {
 		return count;
 	}
 
-	public static boolean[][] nextPhase(boolean[][] inputMap) {
+	public boolean[][] nextPhase(boolean[][] inputMap) {
 		boolean[][] newMap = new boolean[WIDTH][HEIGHT];
 		//Loop over each row and column of the map
 		for (int x = 0; x < inputMap.length; x++) {
