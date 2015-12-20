@@ -9,7 +9,8 @@ public class CaveMap {
 	private static final int DEFAULT_WIDTH = 32;
 	private static final int DELETE = 3;
 	private static final int CREATE = 2;
-	private static final Random RAND = new Random(0);
+	private static final int SEED = 0;
+	private static final Random RAND = new Random();
 
 	private int width;
 	private int height;
@@ -24,6 +25,7 @@ public class CaveMap {
 	public CaveMap(int width, int height) {
 		this.width = width;
 		this.height = height;
+
 		map = genMap();
 	}
 
@@ -65,6 +67,7 @@ public class CaveMap {
 
 	/** generate the initial random 2D map data */
 	private boolean[][] genMap() {
+		RAND.setSeed(SEED);
 		boolean[][] theMap = new boolean[width][height];
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -82,7 +85,7 @@ public class CaveMap {
 				int neighborY = y + j;
 				// If we're looking at the middle point
 				if (i == 0 && j == 0) {
-					//Do nothing, we don't want to add ourselves in!
+					// Do nothing, we don't want to add ourselves in!
 					continue;
 				}
 				// In case the index we're looking at it off the edge of the map, or a filled neighbor
