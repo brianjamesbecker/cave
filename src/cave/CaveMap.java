@@ -53,8 +53,8 @@ public class CaveMap {
 
 	public String toString() {
 		StringBuilder bldr = new StringBuilder();
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
 				if (map[x][y]) bldr.append("0");
 				else bldr.append(" ");
 			}
