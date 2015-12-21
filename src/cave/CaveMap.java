@@ -47,7 +47,7 @@ public class CaveMap {
 			for (int y = 0; y < map[0].length; y++) {
 				int neibNum = neighborCount(x, y);
 				if (map[x][y]) {
-					newMap[x][y] = neibNum < DELETE;
+					newMap[x][y] = neibNum > DELETE;
 				}
 				else {
 					newMap[x][y] = neibNum > CREATE;

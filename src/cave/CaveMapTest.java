@@ -55,7 +55,7 @@ public class CaveMapTest {
 	private void testNextPhase() {
 		CaveMap cave = new CaveMap(5, 5);
 		cave.nextPhase();
-		verify("5 by 5 nextPhase", "0  00\n 0  0\n00 00\n0 0 0\n00000\n", cave.toString());
+		verify("5 by 5 nextPhase", "00000\n000 0\n00 00\n0   0\n00000\n", cave.toString());
 	}
 
 	private void verify(String name, String expected, String actual) {
