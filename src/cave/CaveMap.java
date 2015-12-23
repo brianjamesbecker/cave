@@ -1,6 +1,7 @@
 package cave;
-
 import java.util.Random;
+
+
 
 /**
  * This Cave simulation program is based on work by Michael Cook
@@ -31,7 +32,7 @@ public class CaveMap {
 	public CaveMap(int width, int height) {
 		this.width = width;
 		this.height = height;
-		map = genMap();
+		setMap(genMap());
 	}
 
 	/**
@@ -46,7 +47,7 @@ public class CaveMap {
 		for (int x = 0; x < map.length; x++) {
 			for (int y = 0; y < map[0].length; y++) {
 				int neibNum = neighborCount(x, y);
-				if (map[x][y]) {
+				if (getMap(x,y)) {
 					newMap[x][y] = neibNum > DELETE;
 				}
 				else {
@@ -54,10 +55,10 @@ public class CaveMap {
 				}
 			}
 		}
-		map = newMap;
+		setMap(newMap);
 	}
 
-	public void printMap() {
+	public void printMap () {
 		System.out.println(this.toString());
 	}
 
@@ -65,7 +66,7 @@ public class CaveMap {
 		StringBuilder bldr = new StringBuilder();
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				if (map[x][y]) bldr.append("0");
+				if (getMap(x,y)) bldr.append("0");
 				else bldr.append(" ");
 			}
 			bldr.append("\n");
@@ -99,7 +100,7 @@ public class CaveMap {
 				// In case the index we're looking at it off the edge of the map, or a filled neighbor
 				if (neighborX < 0 || neighborY < 0 ||
 					neighborX >= map.length || neighborY >= map[0].length ||
-					map[neighborX][neighborY]) {
+					getMap(neighborX,neighborY)) {
 					count++;
 				}
 			}
@@ -107,10 +108,12 @@ public class CaveMap {
 		return count;
 	}
 
-	public static void main(String[] args) {
-		CaveMap cave = new CaveMap();
-		cave.printMap();
-		cave.nextPhase();
-		cave.printMap();
+	public boolean getMap( int x, int y) {
+		return map[x][y];
 	}
+
+	public void setMap(boolean[][] map) {
+		this.map = map;
+	}
+
 }
