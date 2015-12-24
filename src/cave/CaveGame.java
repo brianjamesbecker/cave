@@ -1,20 +1,26 @@
 package cave;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class CaveGame {
-	private static final int RESOLUTION = 512;
-	public static void main(String[] args) {
+
+	public CaveGame() {
 		CaveMap cave = new CaveMap();
 		JFrame frame = new JFrame("Java Game");
 		DrawPanel panel = new DrawPanel(cave);
 		frame.getContentPane().add(panel);
 		frame.setSize(RESOLUTION, RESOLUTION);
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		cave.printMap();
 		cave.nextPhase();
 		cave.printMap();
+	}
+
+	private static final int RESOLUTION = 512;
+
+	public static void main(String[] args) {
+		new CaveGame();
 	}
 }
 
