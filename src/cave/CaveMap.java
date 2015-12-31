@@ -35,6 +35,14 @@ public class CaveMap {
 		setMap(genMap());
 	}
 
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
 	/**
 	 * Compute the next step of the simulation
 	 * The new value is at each point based on simulation rules:
