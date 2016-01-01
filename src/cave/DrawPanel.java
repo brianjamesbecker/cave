@@ -23,7 +23,7 @@ public class DrawPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		cave.nextPhase();
+		paint(null);
 	}
 }

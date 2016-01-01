@@ -14,9 +14,8 @@ public class CaveGame {
 		frame.setSize(RESOLUTION * 10, RESOLUTION * 10);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		cave.printMap();
 		cave.nextPhase();
-		cave.printMap();
+	
 	}
 
 	public static void main(String[] args) {

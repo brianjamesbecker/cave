@@ -66,9 +66,6 @@ public class CaveMap {
 		setMap(newMap);
 	}
 
-	public void printMap () {
-		System.out.println(this.toString());
-	}
 
 	public String toString() {
 		StringBuilder bldr = new StringBuilder();
