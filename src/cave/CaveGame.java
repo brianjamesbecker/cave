@@ -1,15 +1,20 @@
 package cave;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.*;
 
-public class CaveGame {
+public class CaveGame implements KeyListener {
 
 	private static final int RESOLUTION = 64;
-
+	private DrawPanel panel;
+	private CaveMap cave;
 	public CaveGame() {
-		CaveMap cave = new CaveMap(RESOLUTION, RESOLUTION);
+		cave = new CaveMap(RESOLUTION, RESOLUTION);
 		JFrame frame = new JFrame("Java Game");
-		DrawPanel panel = new DrawPanel(cave);
+		panel = new DrawPanel(cave);
+		panel.addKeyListener(this);
 		frame.getContentPane().add(panel);
 		frame.setSize(RESOLUTION * 10, RESOLUTION * 10);
 		frame.setVisible(true);
@@ -17,6 +22,27 @@ public class CaveGame {
 		cave.nextPhase();
 	
 	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode()==65){
+		cave.nextPhase();
+		panel.repaint();	
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 	public static void main(String[] args) {
 		new CaveGame();

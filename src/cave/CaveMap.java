@@ -120,5 +120,4 @@ public class CaveMap {
 	public void setMap(boolean[][] map) {
 		this.map = map;
 	}
-
 }

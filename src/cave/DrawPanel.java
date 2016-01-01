@@ -1,11 +1,10 @@
 package cave;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.*;
 import javax.swing.*;
 
-public class DrawPanel extends JPanel implements ActionListener {
+public class DrawPanel extends JPanel  {
 
 	private CaveMap cave;
 
@@ -21,9 +20,8 @@ public class DrawPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
-
-	public void actionPerformed(ActionEvent e) {
-		cave.nextPhase();
-		paint(null);
-	}
 }
+
+	
+
+	
