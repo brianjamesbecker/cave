@@ -14,6 +14,9 @@ public class CaveGame implements KeyListener {
 		cave = new CaveMap(RESOLUTION, RESOLUTION);
 		JFrame frame = new JFrame("Java Game");
 		panel = new DrawPanel(cave);
+		panel.setFocusable(true);
+		panel.requestFocusInWindow();
+
 		panel.addKeyListener(this);
 		frame.getContentPane().add(panel);
 		frame.setSize(RESOLUTION * 10, RESOLUTION * 10);
@@ -30,11 +33,9 @@ public class CaveGame implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 
