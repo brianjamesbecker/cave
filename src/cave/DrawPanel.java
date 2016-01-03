@@ -14,14 +14,10 @@ public class DrawPanel extends JPanel  {
 
 	public void paint(Graphics g){
 		super.paint(g);
-		for(int y=0; y<cave.getHeight(); y++){
-			for(int x=0; x<cave.getWidth(); x++){
-				if(cave.getMap(x, y)) g.fillRect(x * 10, y * 10, 10, 10);
+		for (int y = 0; y < cave.getHeight(); y++) {
+			for (int x = 0; x < cave.getWidth(); x++) {
+				if (cave.getMap(x, y)) g.fillRect(x * 10, y * 10, 10, 10);
 			}
 		}
 	}
 }
-
-	
-
-	
