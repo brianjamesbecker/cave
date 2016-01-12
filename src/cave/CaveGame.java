@@ -14,34 +14,29 @@ public class CaveGame implements KeyListener {
 		cave = new CaveMap(RESOLUTION, RESOLUTION);
 		JFrame frame = new JFrame("Java Game");
 		panel = new DrawPanel(cave);
+		panel.setFocusable(true);
+		panel.requestFocusInWindow();
+
 		panel.addKeyListener(this);
 		frame.getContentPane().add(panel);
 		frame.setSize(RESOLUTION * 10, RESOLUTION * 10);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		cave.nextPhase();
-	
 	}
-	@Override
+
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode()==65){
-		cave.nextPhase();
-		panel.repaint();	
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+			cave.nextPhase();
+			panel.repaint();
 		}
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 
 
 	public static void main(String[] args) {

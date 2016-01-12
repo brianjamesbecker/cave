@@ -66,7 +66,6 @@ public class CaveMap {
 		setMap(newMap);
 	}
 
-
 	public String toString() {
 		StringBuilder bldr = new StringBuilder();
 		for (int y = 0; y < height; y++) {
